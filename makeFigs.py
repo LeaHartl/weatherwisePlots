@@ -160,6 +160,6 @@ def contourMap(datDF, param, month, year, interp):
   cbar.set_label(cblabel, fontsize=18)
   plt.title(pltTitle, fontsize=18)
 
-  plt.show()
-  # plt.savefig(year + month + "_" + param + '_Contour'+interp+'.png', dpi=200, bbox_inches='tight')
-  # plt.close()
+  # plt.show()
+  plt.savefig(year + month + "_" + param + '_Contour'+interp+'.png', dpi=200, bbox_inches='tight')
+  plt.close()
