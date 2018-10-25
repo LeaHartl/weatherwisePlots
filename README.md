@@ -2,7 +2,7 @@
 
 wwMaps_LH.py is the main file and calls makeFigs.py to make the plots. uncomment lines for scatter plots if you want those.
 
-wwMaps_LH checks if data files for AK, canada, russia are present and runs helper functions to generate them if not. 
+wwMaps_LH checks if data files for AK, canada, russia are present for the desired month and runs helper functions to generate them if not. 
 
 run like so with desired year/ month - this does it for August 2018: 
 ./wwMaps_LH.py 2018 08 
