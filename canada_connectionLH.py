@@ -219,11 +219,9 @@ def download_canada_data(year, month):
   df2.drop(columns=['pcp1', 'Pnorm'], inplace = True)
 
 
-  print(df2)
+  # print(df2)
 
 
   df2.to_csv(year + month +'CANdata.csv', sep=',')
   return df2
 
-
-# download_canada_data('2018', '9')

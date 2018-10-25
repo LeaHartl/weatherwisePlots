@@ -99,8 +99,3 @@ def download_russia_data(year, month):
   return rus_df
 
 
-
-# rus_df = download_russia_data('2018', '09')
-
-
-# print(rus_df)
