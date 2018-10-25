@@ -218,8 +218,11 @@ def download_canada_data(year, month):
   df2.precip.fillna(df2.pcp1, inplace=True)
   df2.drop(columns=['pcp1', 'Pnorm'], inplace = True)
 
+  # convert to freedom units
+  df2['tmpAns'] =  df2['tmpAbs']* 9/5 + 32
+  df2['temp'] =  df2['temp']* 9/5
+  df2['pcpAbs'] =  df2['pcpAbs']*  0.039
 
-  # print(df2)
 
 
   df2.to_csv(year + month +'CANdata.csv', sep=',')
