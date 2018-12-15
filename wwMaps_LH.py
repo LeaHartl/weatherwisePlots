@@ -73,10 +73,12 @@ tempRus, pcpRus = procData(rusDF)
 tempDF =tempDF.append([tempRus, tempCan], ignore_index=True)
 pcpDF =pcpDF.append([pcpRus, pcpCan], ignore_index=True)
 
+
+# print(canDF)
 # these make the plots. scatter map is a map with the station locations plotted w colour scale & labels, contourMap is the contour map
 
-# mF.scatterMap(tempDF, 'temp', args.month, args.year)
-# mF.scatterMap(pcpDF, 'precip', args.month, args.year)
+mF.scatterMap(tempDF, 'temp', args.month, args.year)
+mF.scatterMap(pcpDF, 'precip', args.month, args.year)
 mF.contourMap(tempDF, 'temp', args.month, args.year, 'linear') #last argument is the interpolation method for griddata. can be "cubic", "linear", oder 'nearest'
 mF.contourMap(pcpDF, 'precip', args.month, args.year, 'linear')
 

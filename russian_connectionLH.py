@@ -80,7 +80,7 @@ def download_russia_data(year, month):
         pcp = float(pcp)
 
         temp_depart = round(float(tmp) - data['temp_norm'][int(month)-1], 2)
-        precip_depart = round((float(pcp)-data['precip_norm'][int(month)-1]) / data['precip_norm'][int(month)-1] * 100, 2) #departure as percentage
+        precip_depart = round(float(pcp) / data['precip_norm'][int(month)-1] * 100, 2) #departure as percentage
 
         all_results[key].append(tmp) 
         all_results[key].append(temp_depart) 
@@ -91,9 +91,9 @@ def download_russia_data(year, month):
   rus_df = pd.DataFrame.from_dict(all_results, orient='index')
   rus_df.columns = ['lon', 'lat', 'tempAbs', 'temp', 'precipAbs', 'precip']
   # CONVERT TO FREEDOM
-  rus_df[ 'precipAbs'] = rus_df['precipAbs'] * 0.039
-  rus_df[ 'tempAbs'] = rus_df[ 'tempAbs'] * 9/5 + 32
-  rus_df[ 'temp'] = rus_df[ 'temp'] * 9/5
+  rus_df[ 'precipAbs'] = np.round(rus_df['precipAbs'] * 0.039, decimals = 2)
+  rus_df[ 'tempAbs'] = np.round(rus_df[ 'tempAbs'] * 9/5 + 32, decimals = 2)
+  rus_df[ 'temp'] = np.round(rus_df[ 'temp'] * 9/5, decimals = 2)
 
   rus_df.to_csv(year + month +'RUSdata.csv', sep=',')
   return rus_df

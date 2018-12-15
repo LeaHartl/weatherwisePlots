@@ -50,6 +50,7 @@ def getAK(year, month):
    
   # setup data dict
   acis_data = { 
+    'stn':[],
     'lat':[], 
     'lon':[], 
     'temp':[], 
@@ -66,6 +67,7 @@ def getAK(year, month):
       acis_meta_valid["sids"] = station["meta"]["sids"][0]
       acis_station_meta = read_data( acis_meta_url, params=acis_meta_valid) 
 
+
       # reject station if it has no valid metadata
       if len(acis_station_meta['meta']) == 0:
         continue
@@ -78,15 +80,18 @@ def getAK(year, month):
 
       station_ll = station['meta']['ll'] 
       lon, lat = station_ll 
+      stn = station['meta']['name']
    
       station_data = station['data'] 
       deptemp, precip, pnorm = station_data 
       # print (station_data)
   # fix strings temp
       if deptemp=='M': deptemp = np.nan 
+      acis_data['stn'].append(stn) 
       acis_data['lat'].append(lat) 
       acis_data['lon'].append(lon) 
       acis_data['temp'].append(round(float(deptemp), 1)) 
+
   # fix strings precip
       if precip == 'T': precip = 0.0
       if precip == 'M': precip = np.nan

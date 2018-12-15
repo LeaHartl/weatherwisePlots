@@ -98,8 +98,8 @@ def contourMap(datDF, param, month, year, interp):
 
   # set colors etc
   if param == 'temp':
-    levels = [-4, -2, 0, 2, 4, 6, 8]
-    colors = ['teal', 'c', 'bisque', 'gold', 'orange', 'peru']
+    levels = [-4, -2, 0, 2, 4, 6, 8, 10, 12]
+    colors = ['teal', 'c', 'bisque', 'gold', 'orange', 'peru', 'salmon', 'tomato']
     cblabel = 'Temperature Scale (°F)'
     pltTitle =  year + "-" + month + ", Mean Temperature Departure From Normal (1981-2010), interp. " +interp
 
@@ -125,6 +125,19 @@ def contourMap(datDF, param, month, year, interp):
   m.drawcoastlines()
   m.drawstates()
   m.drawcountries()
+
+  # sf = shapefile.Reader('shapefiles/states', name='STATE_NAME')
+  # ss = sf.shapes()
+  # poly1 = Polygon(ss[0].points)
+  # m.readshapefile('shapefiles/states', name='STATE_NAME', drawbounds=True) 
+ 
+  # patches   = [] 
+ 
+  # for info, shape in zip(temp_map.STATE_NAME_info, temp_map.STATE_NAME): 
+  #   if info['STATE_NAME'] == 'Alaska': 
+  #       patches.append( Polygon(np.array(shape), True) ) 
+         
+  # ax.add_collection(PatchCollection(patches, facecolor= 'lightgrey', zorder=1))
 
   # this is the data
   data  = datDF[param].values
@@ -161,5 +174,5 @@ def contourMap(datDF, param, month, year, interp):
   plt.title(pltTitle, fontsize=18)
 
   # plt.show()
-  plt.savefig(year + month + "_" + param + '_Contour'+interp+'.png', dpi=200, bbox_inches='tight')
+  plt.savefig(year + month + "_" + param + '_Contour_'+interp+'.png', dpi=200, bbox_inches='tight')
   plt.close()

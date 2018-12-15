@@ -208,6 +208,7 @@ def download_canada_data(year, month):
  # temp
   df2 = can_df.join(canNormalsT[mn].astype(float))
   df2.columns = ['Stn', 'lat', 'lon', 'tmpAbs', 'temp', 'pcpAbs', 'precip', 'Tnorm']
+
   df2['temp1'] = df2['tmpAbs'] - df2['Tnorm']
   df2.temp.fillna(df2.temp1, inplace=True)
   df2.drop(columns=['temp1', 'Tnorm'], inplace = True)
@@ -219,9 +220,11 @@ def download_canada_data(year, month):
   df2.drop(columns=['pcp1', 'Pnorm'], inplace = True)
 
   # convert to freedom units
-  df2['tmpAns'] =  df2['tmpAbs']* 9/5 + 32
+  df2['tmpAbs'] =  df2['tmpAbs']* 9/5 + 32
   df2['temp'] =  df2['temp']* 9/5
   df2['pcpAbs'] =  df2['pcpAbs']*  0.039
+
+  df2[['lat', 'lon', 'tmpAbs', 'temp', 'pcpAbs']] = np.round(df2[['lat', 'lon', 'tmpAbs', 'temp', 'pcpAbs']], decimals = 2)
 
 
 
